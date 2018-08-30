@@ -1,6 +1,3 @@
-/* Compile with c++11
-g++ -std=c++11 test.cpp
-*/
 //print the elements 0 based location of its first occurence, if present, otherwise print -1
 #include <iostream>
 #include <bits/stdc++.h>
