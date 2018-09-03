@@ -1,6 +1,3 @@
-/* Compile with c++11
-g++ -std=c++11 test.cpp
-*/
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
@@ -14,7 +11,7 @@ void increment(int *v)
 void update(int *a, int *b)
 {
     int add = *a + *b;
-    //cout << *a + *b << endl;
+    cout << *a + *b << endl;
     int sub = *a - *b;
     if (sub < 0)
     {
