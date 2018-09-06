@@ -1,6 +1,3 @@
-/* Compile with c++11
-g++ -std=c++11 test.cpp
-*/
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
@@ -11,15 +8,7 @@ struct Books
     char Author[3];
     int ID;
     float price;
-
-    Books()
-    {
-        ID = 6;
-        price = 13.67;
-        memset(Title, 0, sizeof(Title));
-        memset(Author, 0, sizeof(Author));
-    }
-} book1;
+} book1, arrayBook[10];
 
 int main()
 {
@@ -31,7 +20,10 @@ int main()
     cout << book1.ID << endl;
 
     Books book2;
-    cout << book2.ID << endl;
+    book2.ID = 12;
+
+    arrayBook[0] = book2;
+    cout << arrayBook[0].ID << endl;
 
     return 0;
 }

@@ -7,7 +7,7 @@ int a[3];
 
 int main()
 {
-    // local will keep changing its value
+    // local will keep changing its value with random values
     int a1[3];
 
     cout << a << endl
