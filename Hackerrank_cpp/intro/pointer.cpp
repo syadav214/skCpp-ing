@@ -27,9 +27,9 @@ int main()
 {
     int a;
     cin >> a;
-    //cout << "&a: " << &a << endl;
-    //increment(&a);
-    //cout << "a => " << a << endl;
+    cout << "&a: " << &a << endl;
+    increment(&a);
+    cout << "a => " << a << endl;
 
     int b;
     cin >> b;
