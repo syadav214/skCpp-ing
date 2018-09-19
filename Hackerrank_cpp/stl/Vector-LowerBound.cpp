@@ -18,8 +18,9 @@ int main()
     {
         cin >> val;
 
-        // An iterator to the lower bound of val in the range
+        // An iterator to the lower bound of val in the range i.e. the lowest position of the number
         vector<int>::iterator low = lower_bound(v.begin(), v.end(), val);
+        // We can have upper_bound same params
 
         // We need to subtract the iterator(low) with begin to get position of the lower bound of val
         if (v[low - v.begin()] == val)
