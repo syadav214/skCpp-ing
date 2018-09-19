@@ -27,6 +27,7 @@ int main()
         else
             cout << "No ";
 
+        // 1-based positions
         cout << (low - v.begin() + 1) << endl;
     }
 
