@@ -8,28 +8,47 @@ using namespace std;
 int main()
 {
     int n;
-    set<int> s;
     cin >> n;
+    map<string, int> m;
     for (int i = 0; i < n; i++)
     {
-        int type, query;
-        cin >> type >> query;
+        int type;
+        string X;
+        cin >> type >> X;
         switch (type)
         {
         case 1:
-            s.insert(query);
+            int Y;
+            cin >> Y;
+            if (m.count(X) > 0)
+            {
+                Y += m[X];
+                // m[X] +=Y;
+            }
+
+            /* We can find a key using below code
+             map<string,int>::iterator itr = m.find(X);
+              if(itr == m.end())
+              {
+                  //NOT FOUND
+              }
+            */
+
+            m[X] = Y;
+            //m.insert({X,Y});
             break;
         case 2:
-            s.erase(query);
+            m.erase(X);
             break;
         case 3:
-            cout << (s.find(query) == s.end() ? "No" : "Yes") << endl;
-            break;
-        case 4:
-            cout << "Size: " << s.size() << endl;
-            break;
-        case 5:
-            cout << "Count: " << s.count(query) << endl;
+            if (m.count(X) == 0)
+            {
+                cout << 0 << endl;
+            }
+            else
+            {
+                cout << m[X] << endl;
+            }
             break;
         }
     }
