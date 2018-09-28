@@ -1,6 +1,3 @@
-/* Compile with c++11
-g++ -std=c++11 test.cpp
-*/
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,9 +16,6 @@ void printKMax(int arr[], int n, int k)
             dqForPrint.push_back(i);
         }
 
-        cout << "current data: " << dqForPrint[i] << endl;
-        cout << "front: " << dqForPrint.front() << endl;
-        cout << "i - k: " << i - k << endl;
         // remove elements outside the current window
         if (dqForPrint.front() <= (i - k))
         {
