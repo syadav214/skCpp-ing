@@ -5,143 +5,69 @@ g++ -std=c++11 test.cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-class A
+class HotelRoom
 {
   public:
-    A()
+    HotelRoom(int bedrooms, int bathrooms)
+        : bedrooms_(bedrooms), bathrooms_(bathrooms)
     {
-        callA = 0;
+    }
+
+    // get_price should be virtual, so that we can override in child class
+    virtual int get_price()
+    {
+        return 50 * bedrooms_ + 100 * bathrooms_;
     }
 
   private:
-    int callA;
-    void inc()
-    {
-        callA++;
-    }
-
-  protected:
-    void func(int &a)
-    {
-        a = a * 2;
-        inc();
-    }
-
-  public:
-    int getA()
-    {
-        return callA;
-    }
+    int bedrooms_;
+    int bathrooms_;
 };
 
-class B
+class HotelApartment : public HotelRoom
 {
   public:
-    B()
-    {
-        callB = 0;
-    }
+    HotelApartment(int bedrooms, int bathrooms)
+        : HotelRoom(bedrooms, bathrooms) {}
 
-  private:
-    int callB;
-    void inc()
+    int get_price()
     {
-        callB++;
-    }
-
-  protected:
-    void func(int &a)
-    {
-        a = a * 3;
-        inc();
-    }
-
-  public:
-    int getB()
-    {
-        return callB;
+        return HotelRoom::get_price() + 100;
     }
 };
-
-class C
-{
-  public:
-    C()
-    {
-        callC = 0;
-    }
-
-  private:
-    int callC;
-    void inc()
-    {
-        callC++;
-    }
-
-  protected:
-    void func(int &a)
-    {
-        a = a * 5;
-        inc();
-    }
-
-  public:
-    int getC()
-    {
-        return callC;
-    }
-};
-
-class D : public A, public B, public C
-{
-
-    int val;
-
-  public:
-    //Initially val is 1
-    D()
-    {
-        val = 1;
-    }
-
-    //Implement this function
-    void update_val(int new_val)
-    {
-        int a = new_val;
-        while (a % 2 == 0)
-        {
-            a = a / 2;
-            A::func(val);
-        }
-        while (a % 3 == 0)
-        {
-            a = a / 3;
-            B::func(val);
-        }
-        while (a % 5 == 0)
-        {
-            a = a / 5;
-            C::func(val);
-        }
-    }
-
-    //For Checking Purpose
-    void check(int); //Do not delete this line.
-};
-
-void D::check(int new_val)
-{
-    update_val(new_val);
-    cout << "Value = " << val << endl
-         << "A's func called " << getA() << " times " << endl
-         << "B's func called " << getB() << " times" << endl
-         << "C's func called " << getC() << " times" << endl;
-}
-
 int main()
 {
-    D d;
-    int new_val;
-    cin >> new_val;
-    d.check(new_val);
+    int n;
+    cin >> n;
+    vector<HotelRoom *> rooms;
+    for (int i = 0; i < n; ++i)
+    {
+        string room_type;
+        int bedrooms;
+        int bathrooms;
+        cin >> room_type >> bedrooms >> bathrooms;
+        if (room_type == "standard")
+        {
+            rooms.push_back(new HotelRoom(bedrooms, bathrooms));
+        }
+        else
+        {
+            rooms.push_back(new HotelApartment(bedrooms, bathrooms));
+        }
+    }
+
+    int total_profit = 0;
+    for (auto room : rooms)
+    {
+        total_profit += room->get_price();
+    }
+    cout << total_profit << endl;
+
+    for (auto room : rooms)
+    {
+        delete room;
+    }
+    rooms.clear();
+
+    return 0;
 }
